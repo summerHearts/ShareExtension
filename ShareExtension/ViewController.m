@@ -12,15 +12,32 @@
 
 static NSString *const normalUrl = @"http://www.jianshu.com/p/27cc136b24ed";
 
-static NSString *const specialUrl = @"http://192.168.0.50/iOS高级工程师－姚亚杰.pdf";/*
-                                                                     外网不能访问。你可以把127.0.0.1替换成你本机的ip，这样跟你的电脑在同一个局域网下的设备就可以访问，例如你的手机。
-                                                                     */
+static NSString *const downLoadUrl = @"http://192.168.0.50/iOS-AutoLayout开发秘籍-第2版.pdf";
+
 static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
+
+/*
+ 外网不能访问。你可以把127.0.0.1替换成你本机的ip，这样跟你的电脑在同一个局域网下的设备就可以访问，例如你的手机。
+ */
 
 @interface ViewController ()<UIWebViewDelegate>
 
 @property (nonatomic,strong) UIWebView *webView;
+
 @end
+
+/**
+ *  1: 启动Apache 服务  
+     //开启apache:  sudo apachectl start
+ 
+     //重启apache:  sudo apachectl restart
+ 
+     //关闭apache:  sudo apachectl stop
+ 
+    2: 点击Finder,然后Command+Shift+G,前往如下路径(mac下Apache服务器的文件路径)/Library/WebServer/Documents
+ 
+    3: 编写php上传文件代码 设置要存储文件的读写权限
+ */
 
 @implementation ViewController
 
@@ -43,7 +60,7 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
     }];
     
     //文件下载
-    [HttpRequet downloadFileRequest:specialUrl completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
+    [HttpRequet downloadFileRequest:downLoadUrl completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
         if (error == nil) {
             // location:下载任务完成之后,文件存储的位置，这个路径默认是在tmp文件夹下!
             // 只会临时保存，因此需要将其另存
@@ -52,7 +69,7 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
             
             NSFileManager *fileManager = [NSFileManager defaultManager];
             
-            NSString *path = [[HttpRequet getFilePath] stringByAppendingPathComponent:@"iOS高级工程师－姚亚杰.pdf"];
+            NSString *path = [[HttpRequet getFilePath] stringByAppendingPathComponent:@"iOS-AutoLayout开发秘籍-第2版.pdf"];
             
             // 移动文件
             NSError *fileError;
@@ -76,7 +93,7 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
     
     
     //文件上传
-    NSString *path = [[HttpRequet getFilePath] stringByAppendingPathComponent:@"iOS高级工程师－姚亚杰.pdf"];
+    NSString *path = [[HttpRequet getFilePath] stringByAppendingPathComponent:@"iOS-AutoLayout开发秘籍-第2版.pdf"];
     NSString *fileName = path.lastPathComponent;
     [HttpRequet uploadFileRequest:uploadImageUrl filePath:path fileName:fileName params:nil  completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
         

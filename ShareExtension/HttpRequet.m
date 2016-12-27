@@ -129,7 +129,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
          }
          [data appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
      }
-     
+    
     // name：表单控件名称  filename：上传文件名
     [headerStrM appendFormat:@"Content-Disposition: form-data; name=%@; filename=%@\r\n",formName,reName];
     [headerStrM appendFormat:@"Content-Type: %@\r\n\r\n",fileType];
