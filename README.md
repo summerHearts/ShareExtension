@@ -1,5 +1,3 @@
-# ShareExtension
-AppExtension
 
 /**
  *  1: 启动Apache 服务  
