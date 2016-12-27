@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE0F13C61E1207AB00E4A482 /* HttpRequet.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F13C51E1207AB00E4A482 /* HttpRequet.m */; };
-		AE0F13E81E12096300E4A482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F13E71E12096300E4A482 /* UIColor+Hex.m */; };
+		AE0F13EC1E123FAB00E4A482 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0F13EB1E123FAB00E4A482 /* UIColor+Hex.m */; };
 		AE242EC01DF8023700FB24E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE242EBF1DF8023700FB24E7 /* main.m */; };
 		AE242EC31DF8023800FB24E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE242EC21DF8023800FB24E7 /* AppDelegate.m */; };
 		AE242EC61DF8023800FB24E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE242EC51DF8023800FB24E7 /* ViewController.m */; };
@@ -63,8 +63,8 @@
 /* Begin PBXFileReference section */
 		AE0F13C41E1207AB00E4A482 /* HttpRequet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequet.h; sourceTree = "<group>"; };
 		AE0F13C51E1207AB00E4A482 /* HttpRequet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequet.m; sourceTree = "<group>"; };
-		AE0F13E61E12096300E4A482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
-		AE0F13E71E12096300E4A482 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		AE0F13EA1E123FAB00E4A482 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		AE0F13EB1E123FAB00E4A482 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		AE242EBB1DF8023700FB24E7 /* ShareExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE242EBF1DF8023700FB24E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE242EC11DF8023700FB24E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE0F13E91E123F9F00E4A482 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AE0F13EA1E123FAB00E4A482 /* UIColor+Hex.h */,
+				AE0F13EB1E123FAB00E4A482 /* UIColor+Hex.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		AE242EB21DF8023700FB24E7 = {
 			isa = PBXGroup;
 			children = (
@@ -145,8 +154,7 @@
 		AE242EBD1DF8023700FB24E7 /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				AE0F13E61E12096300E4A482 /* UIColor+Hex.h */,
-				AE0F13E71E12096300E4A482 /* UIColor+Hex.m */,
+				AE0F13E91E123F9F00E4A482 /* Extension */,
 				AE242EC11DF8023700FB24E7 /* AppDelegate.h */,
 				AE242EC21DF8023800FB24E7 /* AppDelegate.m */,
 				AE242EC41DF8023800FB24E7 /* ViewController.h */,
@@ -368,8 +376,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0F13E81E12096300E4A482 /* UIColor+Hex.m in Sources */,
 				AE242EC61DF8023800FB24E7 /* ViewController.m in Sources */,
+				AE0F13EC1E123FAB00E4A482 /* UIColor+Hex.m in Sources */,
 				AE0F13C61E1207AB00E4A482 /* HttpRequet.m in Sources */,
 				AE242EC31DF8023800FB24E7 /* AppDelegate.m in Sources */,
 				AE242EC01DF8023700FB24E7 /* main.m in Sources */,

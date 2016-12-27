@@ -136,48 +136,7 @@
     NSData *imageDataOrigin = [NSData dataWithContentsOfFile:srcPath.path];
     
     [imageDataOrigin writeToFile:tarPath.path atomically:YES];
-    //    NSFileManager *fileManager=[NSFileManager defaultManager];
-    //
-    //    BOOL success=[fileManager createFileAtPath:tarPath.path contents:nil attributes:nil];
-    //    if (success) {
-    //
-    //        NSFileHandle *inFile=[NSFileHandle fileHandleForWritingAtPath:srcPath.path];
-    //        NSFileHandle *outFile=[NSFileHandle fileHandleForWritingAtPath:tarPath.path];
-    //
-    //
-    //        NSDictionary   *fileAttu=[fileManager attributesOfItemAtPath:srcPath.path error:nil];
-    //        NSNumber *fileSizeNum=[fileAttu objectForKey:NSFileSize];
-    //
-    //
-    //        int n=0;
-    //
-    //        BOOL isEnd=YES;
-    //        NSInteger readSize=0;//已经读取的数量
-    //        NSInteger fileSize=[fileSizeNum longValue];//文件的总长度
-    //        while (isEnd) {
-    //
-    //
-    //
-    //            NSInteger subLength=fileSize-readSize;
-    //            NSData *data=nil;
-    //
-    //
-    //            if (subLength<5000) {
-    //                isEnd=NO;
-    //                data=[inFile readDataToEndOfFile];
-    //            }else{
-    //                data=[inFile readDataOfLength:5000];
-    //                readSize+=5000;
-    //                [inFile seekToFileOffset:readSize];
-    //            }
-    //            [outFile writeData:data];
-    //            n++;
-    //        }
-    //        
-    //        [inFile closeFile];
-    //        [outFile closeFile];
-    //    }
-    
+
     return YES;
 }
 

@@ -7,8 +7,9 @@
 //
 
 #import "HttpRequet.h"
-
-
+/*
+    援引自AFNetworking 文件类型判断
+ */
 static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 #ifdef __UTTYPE__
     NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
@@ -67,7 +68,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [downloadTask resume];
 }
 
-+ (void)uploadFileRequest:(NSString *)urlString  filePath:(NSString *)filePath fileName:(NSString *)fileName completeHander:(void(^)(NSURLResponse *response, NSURL * location, NSError *error))completeHander{
++ (void)uploadFileRequest:(NSString *)urlString  filePath:(NSString *)filePath fileName:(NSString *)fileName params:(NSDictionary *)params completeHander:(void(^)(NSURLResponse *response, NSURL * location, NSError *error))completeHander{
 
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -79,7 +80,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
     
     // FilePath:要上传的本地文件路径  formName:表单控件名称，应于服务器一致
-    NSData* data = [self getHttpBodyWithFilePath:filePath formName:@"file" reName:fileName];
+    NSData* data = [self getHttpBodyWithFilePath:filePath formName:@"file" reName:fileName params:params];
 
     request.HTTPBody = data;
 
@@ -105,14 +106,30 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 #endif
 }
 
-+ (NSData *)getHttpBodyWithFilePath:(NSString *)filePath formName:(NSString *)formName reName:(NSString *)reName
-{
-    NSMutableData *data = [NSMutableData data];
++ (NSData *)getHttpBodyWithFilePath:(NSString *)filePath formName:(NSString *)formName reName:(NSString *)reName params:(NSDictionary *)params{
     
+    NSMutableData *data = [NSMutableData data];
     NSString *fileType = AFContentTypeForPathExtension([filePath pathExtension]);
     // 表单拼接
     NSMutableString *headerStrM =[NSMutableString string];
     [headerStrM appendFormat:@"--%@\r\n",@"boundary"];
+    
+     NSString *boundary = @"boundary";//分隔符
+    
+     //multipart/form-data格式按照构建上传数据
+    for (NSString *key in params) {
+         NSString *pair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n",boundary,key];
+         [data appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         id value = [params objectForKey:key];
+         if ([value isKindOfClass:[NSString class]]) {
+             [data appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
+         }else if ([value isKindOfClass:[NSData class]]){
+             [data appendData:value];
+         }
+         [data appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+     }
+     
     // name：表单控件名称  filename：上传文件名
     [headerStrM appendFormat:@"Content-Disposition: form-data; name=%@; filename=%@\r\n",formName,reName];
     [headerStrM appendFormat:@"Content-Type: %@\r\n\r\n",fileType];

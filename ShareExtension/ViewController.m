@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <QuickLook/QuickLook.h>
 #import "UIColor+Hex.h"
 #import "HttpRequet.h"
 
@@ -25,10 +24,14 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
 
 @implementation ViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
-
     [self.view addSubview:self.webView];
     
     //网址加载
@@ -71,9 +74,11 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
         }
     }];
     
+    
+    //文件上传
     NSString *path = [[HttpRequet getFilePath] stringByAppendingPathComponent:@"iOS高级工程师－姚亚杰.pdf"];
     NSString *fileName = path.lastPathComponent;
-    [HttpRequet uploadFileRequest:uploadImageUrl filePath:path fileName:fileName completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
+    [HttpRequet uploadFileRequest:uploadImageUrl filePath:path fileName:fileName params:nil  completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
         
     }];
 }
@@ -86,9 +91,7 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
     }
     return _webView;
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
+
 
 - (IBAction)btnccc:(id)sender {
    
