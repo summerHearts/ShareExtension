@@ -52,12 +52,12 @@ static NSString *const uploadImageUrl = @"http://192.168.0.50/loadFile.php";
     [self.view addSubview:self.webView];
     
     //网址加载
-    [HttpRequet normalSessionRequest:normalUrl completeHander:^(NSURLResponse *response,
-                                                                NSData *data,
-                                                                NSError *error) {
-        NSLog(@"%@", response.MIMEType);
-           [self.webView loadData:data MIMEType:response.MIMEType textEncodingName:@"UTF8" baseURL:nil];
-    }];
+    //[HttpRequet normalSessionRequest:normalUrl completeHander:^(NSURLResponse *response,
+    //                                                            NSData *data,
+    //                                                           NSError *error) {
+    //    NSLog(@"%@", response.MIMEType);
+     //      [self.webView loadData:data MIMEType:response.MIMEType textEncodingName:@"UTF8" baseURL:nil];
+   // }];
     
     //文件下载
     [HttpRequet downloadFileRequest:downLoadUrl completeHander:^(NSURLResponse *response, NSURL *location, NSError *error) {
